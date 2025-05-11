@@ -1,0 +1,262 @@
+public class MatrixMultiplication {
+
+    // Method to multiply two matrices
+    public static List<List<Integer>> multiplyMatrices(List<List<Integer>> A, List<List<Integer>> B) {
+        Integer rowA = A.size();
+        Integer colA = A[0].size();
+        Integer rowB = B.size();
+        Integer colB = B[0].size();
+
+        // Validate matrix dimensions
+        if (colA != rowB) {
+            System.debug('Matrix multiplication not possible: Column of A != Row of B');
+            return null;
+        }
+
+        // Initialize result matrix with zeros
+        List<List<Integer>> result = new List<List<Integer>>();
+        for (Integer i = 0; i < rowA; i++) {
+            List<Integer> row = new List<Integer>();
+            for (Integer j = 0; j < colB; j++) {
+                row.add(0);
+            }
+            result.add(row);
+        }
+
+        // Perform multiplication
+        for (Integer i = 0; i < rowA; i++) {
+            for (Integer j = 0; j < colB; j++) {
+                Integer sum = 0;
+                for (Integer k = 0; k < colA; k++) {
+                    sum += A[i][k] * B[k][j];
+                }
+                result[i][j] = sum;
+            }
+        }
+
+        return result;
+    }
+
+    // Method to test matrix multiplication
+    public static void testMatrixMultiplication() {
+        // Define Matrix A (2x3)
+        List<List<Integer>> A = new List<List<Integer>>{
+            new List<Integer>{1, 2, 3},
+            new List<Integer>{4, 5, 6}
+        };
+
+        // Define Matrix B (3x2)
+        List<List<Integer>> B = new List<List<Integer>>{
+            new List<Integer>{7, 8},
+            new List<Integer>{9, 10},
+            new List<Integer>{11, 12}
+        };
+
+        // Call the multiplication method
+        List<List<Integer>> result = multiplyMatrices(A, B);
+
+        // Display the result
+        if (result != null) {
+            System.debug('Resultant Matrix:');
+            for (List<Integer> row : result) {
+                System.debug(row);
+            }
+        }
+    }
+}
+
+
+
+public class MatrixAddition {
+
+    // Method to add two matrices
+    public static List<List<Integer>> addMatrices(List<List<Integer>> matrix1, List<List<Integer>> matrix2) {
+        // Get the number of rows and columns of the matrices
+        Integer rows = matrix1.size();
+        Integer cols = matrix1[0].size();
+        
+        // Check if the matrices have the same dimensions
+        if (rows != matrix2.size() || cols != matrix2[0].size()) {
+            throw new IllegalArgumentException('Matrices must have the same dimensions for addition');
+        }
+        
+        // Create a new matrix to store the result
+        List<List<Integer>> resultMatrix = new List<List<Integer>>();
+        
+        // Iterate through each element of the matrices and add them
+        for (Integer i = 0; i < rows; i++) {
+            List<Integer> resultRow = new List<Integer>();
+            for (Integer j = 0; j < cols; j++) {
+                Integer sum = matrix1[i][j] + matrix2[i][j];
+                resultRow.add(sum);
+            }
+            resultMatrix.add(resultRow);
+        }
+        
+        return resultMatrix;
+    }
+
+    // Method to print matrix (for debugging or display purposes)
+    public static void printMatrix(List<List<Integer>> matrix) {
+        for (List<Integer> row : matrix) {
+            System.debug(row);
+        }
+    }
+    
+    // Sample usage
+    public static void testMatrixAddition() {
+        // Define two 2x2 matrices
+        List<List<Integer
+    }
+
+
+
+    public class FibonacciSeries {
+    
+    // Method to generate Fibonacci Series up to a given number 'n'
+    public static List<Integer> generateFibonacciSeries(Integer n) {
+        List<Integer> fibonacciList = new List<Integer>();
+        
+        // Initializing the first two Fibonacci numbers
+        Integer firstNum = 0;
+        Integer secondNum = 1;
+        
+        // Adding the first two numbers to the list
+        fibonacciList.add(firstNum);
+        fibonacciList.add(secondNum);
+        
+        // Generating the Fibonacci series up to 'n' numbers
+        for (Integer i = 2; i < n; i++) {
+            Integer nextNum = firstNum + secondNum; // Sum of the last two numbers
+            fibonacciList.add(nextNum);
+            
+            // Updating the firstNum and secondNum for the next iteration
+            firstNum = secondNum;
+            secondNum = nextNum;
+        }
+        
+        return fibonacciList;
+    }
+    
+    // Example: Method to display Fibonacci series in the debug log
+    public static void displayFibonacciSeries(Integer n) {
+        List<Integer> fibonacci = generateFibonacciSeries(n);
+        System.debug('Fibonacci Series up to ' + n + ' numbers: ' + fibonacci);
+    }
+    
+}
+
+
+
+public class PrimeNumberChecker {
+    
+    // Method to check if the number is prime or not
+    public static Boolean isPrime(Integer number) {
+        // Handling edge cases for numbers less than 2
+        if (number <= 1) {
+            return false; // Numbers less than or equal to 1 are not prime
+        }
+        
+        // Check for factors from 2 up to the square root of the number
+        for (Integer i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false; // If divisible by i, it's not prime
+            }
+        }
+        
+        return true; // If no factors were found, the number is prime
+    }
+    
+    // Example: Method to display whether a number is prime in the debug log
+    public static void checkAndDisplayPrime(Integer number) {
+        Boolean isPrimeNumber = isPrime(number);
+        if (isPrimeNumber) {
+            System.debug(number + ' is a prime number.');
+        } else {
+            System.debug(number + ' is not a prime number.');
+        }
+    }
+}
+
+
+public class TemperatureConverter {
+    
+    // Method to convert Celsius to Fahrenheit
+    public static Double celsiusToFahrenheit(Double celsius) {
+        return (celsius * 9/5) + 32;
+    }
+    
+    // Method to convert Fahrenheit to Celsius
+    public static Double fahrenheitToCelsius(Double fahrenheit) {
+        return (fahrenheit - 32) * 5/9;
+    }
+
+    // Example: Method to display both conversions in the debug log
+    public static void displayConversions(Double temperature, String scale) {
+        if (scale == 'C') {
+            Double fahrenheit = celsiusToFahrenheit(temperature);
+            System.debug(temperature + '°C is equal to ' + fahrenheit + '°F');
+        } else if (scale == 'F') {
+            Double celsius = fahrenheitToCelsius(temperature);
+            System.debug(temperature + '°F is equal to ' + celsius + '°C');
+        } else {
+            System.debug('Invalid scale. Please use "C" for Celsius or "F" for Fahrenheit.');
+        }
+    }
+}
+
+
+public class InterestCalculator {
+
+    // Method to calculate Simple Interest
+    public static Double calculateSimpleInterest(Double principal, Double rate, Integer time) {
+        // Formula for Simple Interest: SI = (P * R * T) / 100
+        Double simpleInterest = (principal * rate * time) / 100;
+        return simpleInterest;
+    }
+
+    // Method to calculate Compound Interest
+    public static Double calculateCompoundInterest(Double principal, Double rate, Integer time, Integer frequency) {
+        // Formula for Compound Interest: A = P * (1 + R/N)^(N*T)
+        // CI = A - P
+        // Where:
+        // P = Principal
+        // R = Annual Interest Rate
+        // N = Frequency of compounding per year
+        // T = Time in years
+        Double compoundInterest = principal * Math.pow(1 + (rate / (100 * frequency)), frequency * time) - principal;
+        return compoundInterest;
+    }
+
+    // Example method to display the results of both Simple and Compound Interest in debug log
+    public static void displayInterestCalculations(Double principal, Double rate, Integer time, Integer frequency) {
+        Double simpleInterest = calculateSimpleInterest(principal, rate, time);
+        Double compoundInterest = calculateCompoundInterest(principal, rate, time, frequency);
+        
+        System.debug('Principal: ' + principal);
+        System.debug('Rate: ' + rate + '%');
+        System.debug('Time: ' + time + ' years');
+        System.debug('Simple Interest: ' + simpleInterest);
+        System.debug('Compound Interest: ' + compoundInterest);
+    }
+}
+
+
+public class CurrencyConverter {
+    
+    // Method to convert currency from one to another using an exchange rate
+    public static Double convertCurrency(Double amount, Double exchangeRate) {
+        // Convert the amount using the exchange rate
+        Double convertedAmount = amount * exchangeRate;
+        return convertedAmount;
+    }
+
+    // Example method to display the conversion in the debug log
+    public static void displayCurrencyConversion(Double amount, Double exchangeRate, String fromCurrency, String toCurrency) {
+        // Convert the amount using the exchange rate
+        Double convertedAmount = convertCurrency(amount, exchangeRate);
+        
+        // Log the conversion result
+        System.debug(amount + ' ' + fromCurrency + ' is equal to ' + convertedAmount + ' ' + toCurrency);
+    }
+}

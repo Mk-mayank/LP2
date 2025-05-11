@@ -95,3 +95,4 @@ iface = gr.Interface(fn=chatbot,
                      title="Cafe Chatbot", 
                      description="Ask me anything about our cafe! (e.g., menu, hours, coffee, etc.)")
 iface.launch()
+    
